@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
@@ -11,6 +11,7 @@ TagManager:
   - 
   - Water
   - UI
+  - Enemy
   - 
   - 
   - 
@@ -35,9 +36,19 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Background
   m_SortingLayers:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: background
+    uniqueID: 1645327421
+    locked: 0
+  - name: hero
+    uniqueID: 469438369
+    locked: 0
+  m_RenderingLayers:
+  - Default
+  - Hero
+  - background
+  m_MigratedRenderPipelines: []
