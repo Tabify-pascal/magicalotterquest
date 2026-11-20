@@ -6,11 +6,19 @@ public class CardTargetingController : MonoBehaviour
 {
     [SerializeField] private Camera combatCamera;
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private EnergyManager energyManager;
+    [SerializeField] private TurnManager turnManager;
 
     private CardView selectedCard;
 
     public void SelectCard(CardView card)
     {
+        if (!turnManager.IsPlayerTurn)
+            return;
+
+        if (card == null || card.Card == null)
+            return;
+
         if (selectedCard == card)
         {
             selectedCard = null;
@@ -18,7 +26,14 @@ public class CardTargetingController : MonoBehaviour
             return;
         }
 
+        if (!energyManager.CanSpend(card.Card.EnergyCost))
+        {
+            Debug.Log("Not enough energy!");
+            return;
+        }
+
         selectedCard = card;
+
         Debug.Log($"Selected {card.Card.Name}");
     }
 
@@ -54,15 +69,32 @@ public class CardTargetingController : MonoBehaviour
 
     private void PlayCard(Combatant target)
     {
+        if (!turnManager.IsPlayerTurn)
+        return;
+        
         CardInstance card = selectedCard.Card;
+
+        if (!energyManager.TrySpend(card.EnergyCost))
+        {
+            selectedCard = null;
+            Debug.Log("Not enough energy!");
+            return;
+        }
 
         target.TakeDamage(card.Damage);
 
         Debug.Log(
             $"Played {card.Name} on {target.name} " +
-            $"for {card.Damage} damage!"
+            $"for {card.Damage} damage! " +
+            $"Energy: {energyManager.CurrentEnergy}/" +
+            $"{energyManager.MaxEnergy}"
         );
 
+        selectedCard = null;
+    }
+
+    public void CancelSelection()
+    {
         selectedCard = null;
     }
 }
