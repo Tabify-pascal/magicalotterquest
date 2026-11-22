@@ -8,6 +8,9 @@ public class CardTargetingController : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private EnergyManager energyManager;
     [SerializeField] private TurnManager turnManager;
+    [SerializeField] private TargetingArrowUI targetingArrow;
+    [SerializeField] private RectTransform gameCanvasRect;
+    [SerializeField] private CombatAnimator playerAnimator;
 
     private CardView selectedCard;
 
@@ -21,7 +24,7 @@ public class CardTargetingController : MonoBehaviour
 
         if (selectedCard == card)
         {
-            selectedCard = null;
+            CancelSelection();
             Debug.Log("Card selection cancelled.");
             return;
         }
@@ -41,6 +44,8 @@ public class CardTargetingController : MonoBehaviour
     {
         if (selectedCard == null)
             return;
+
+        UpdateArrow();
 
         if (Mouse.current == null ||
             !Mouse.current.leftButton.wasPressedThisFrame)
@@ -67,34 +72,83 @@ public class CardTargetingController : MonoBehaviour
         PlayCard(target);
     }
 
+
     private void PlayCard(Combatant target)
     {
         if (!turnManager.IsPlayerTurn)
-        return;
-        
+            return;
+
+        if (selectedCard == null || selectedCard.Card == null)
+            return;
+
         CardInstance card = selectedCard.Card;
 
         if (!energyManager.TrySpend(card.EnergyCost))
         {
-            selectedCard = null;
+            CancelSelection();
             Debug.Log("Not enough energy!");
             return;
         }
 
+        // Player casts the spell.
+        playerAnimator.PlaySpell();
+
+        // Apply damage.
         target.TakeDamage(card.Damage);
+
+        // Enemy reacts to damage.
+        if (target.CurrentHealth > 0 &&
+            target.TryGetComponent(out CombatAnimator targetAnimator))
+        {
+            targetAnimator.PlayHurt();
+        }
 
         Debug.Log(
             $"Played {card.Name} on {target.name} " +
-            $"for {card.Damage} damage! " +
-            $"Energy: {energyManager.CurrentEnergy}/" +
-            $"{energyManager.MaxEnergy}"
+            $"for {card.Damage} damage!"
         );
 
-        selectedCard = null;
+        CancelSelection();
     }
 
     public void CancelSelection()
     {
         selectedCard = null;
+        targetingArrow.Hide();
+    }
+
+    private void UpdateArrow()
+    {
+        if (selectedCard == null || Mouse.current == null)
+            return;
+
+        RectTransform cardRect =
+            selectedCard.GetComponent<RectTransform>();
+
+        Vector3[] corners = new Vector3[4];
+        cardRect.GetWorldCorners(corners);
+
+        Vector2 startScreen = new Vector2(
+            (corners[1].x + corners[2].x) * 0.5f,
+            (corners[1].y + corners[2].y) * 0.5f
+        );
+
+        Vector2 mouseScreen = Mouse.current.position.ReadValue();
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            gameCanvasRect,
+            startScreen,
+            null,
+            out Vector2 startLocal
+        );
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            gameCanvasRect,
+            mouseScreen,
+            null,
+            out Vector2 mouseLocal
+        );
+
+        targetingArrow.Show(startLocal, mouseLocal);
     }
 }

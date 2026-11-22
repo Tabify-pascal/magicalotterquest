@@ -1,11 +1,14 @@
 
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnergyUI : MonoBehaviour
 {
     [SerializeField] private EnergyManager energyManager;
-    [SerializeField] private TMP_Text energyText;
+    [SerializeField] private Image energyDigit;
+
+    [Header("Digit Sprites (0-9)")]
+    [SerializeField] private Sprite[] digits = new Sprite[10];
 
     private void Start()
     {
@@ -25,6 +28,9 @@ public class EnergyUI : MonoBehaviour
 
     private void UpdateEnergy(int current, int max)
     {
-        energyText.text = $"{current}/{max}";
+        if (current < 0 || current >= digits.Length)
+            return;
+
+        energyDigit.sprite = digits[current];
     }
 }

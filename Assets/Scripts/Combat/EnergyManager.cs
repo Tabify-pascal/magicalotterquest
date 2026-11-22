@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class EnergyManager : MonoBehaviour
 {
-    [SerializeField, Min(1)] private int maxEnergy = 3;
+    [Header("Energy Settings")]
+    [SerializeField, Min(0)] private int turnEnergy = 3;
+    [SerializeField, Min(1)] private int maxEnergy = 6;
 
+    public int TurnEnergy => turnEnergy;
     public int MaxEnergy => maxEnergy;
     public int CurrentEnergy { get; private set; }
 
@@ -13,7 +16,7 @@ public class EnergyManager : MonoBehaviour
 
     private void Awake()
     {
-        CurrentEnergy = maxEnergy;
+        CurrentEnergy = Mathf.Min(turnEnergy, maxEnergy);
     }
 
     public bool CanSpend(int amount)
@@ -27,16 +30,33 @@ public class EnergyManager : MonoBehaviour
             return false;
 
         CurrentEnergy -= amount;
-
-        OnEnergyChanged?.Invoke(CurrentEnergy, maxEnergy);
+        NotifyEnergyChanged();
 
         return true;
     }
 
+    public void GainEnergy(int amount)
+    {
+        if (amount <= 0)
+            return;
+
+        CurrentEnergy = Mathf.Min(
+            CurrentEnergy + amount,
+            maxEnergy
+        );
+
+        NotifyEnergyChanged();
+    }
+
     public void Refill()
     {
-        CurrentEnergy = maxEnergy;
+        CurrentEnergy = Mathf.Min(turnEnergy, maxEnergy);
 
+        NotifyEnergyChanged();
+    }
+
+    private void NotifyEnergyChanged()
+    {
         OnEnergyChanged?.Invoke(CurrentEnergy, maxEnergy);
     }
 }
