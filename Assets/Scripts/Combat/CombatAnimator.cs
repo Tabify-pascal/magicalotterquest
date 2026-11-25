@@ -50,4 +50,12 @@ public class CombatAnimator : MonoBehaviour
     {
         animator.SetTrigger(DefeatTrigger);
     }
+
+    private static readonly int AttackTrigger =
+    Animator.StringToHash("attack");
+
+    public void PlayAttack()
+    {
+        animator.SetTrigger(AttackTrigger);
+    }
 }

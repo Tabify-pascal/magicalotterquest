@@ -10,8 +10,14 @@ public enum TurnState
 
 public class TurnManager : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private EnergyManager energyManager;
     [SerializeField] private CardTargetingController targetingController;
+    [SerializeField] private HandManager handManager;
+    [SerializeField] private EnemyController enemyController;
+
+    [Header("Turn Settings")]
+    [SerializeField, Min(1)] private int cardsPerTurn = 5;
 
     public TurnState CurrentState { get; private set; }
     public int TurnNumber { get; private set; }
@@ -31,9 +37,13 @@ public class TurnManager : MonoBehaviour
 
         CurrentState = TurnState.Enemy;
 
+        // Cancel any selected card before destroying it.
         targetingController.CancelSelection();
 
-        Debug.Log("Player turn ended.");
+        // Discard all remaining cards.
+        handManager.DiscardHand();
+
+        Debug.Log($"Player turn {TurnNumber} ended.");
 
         StartCoroutine(ExecuteEnemyTurn());
     }
@@ -42,10 +52,7 @@ public class TurnManager : MonoBehaviour
     {
         Debug.Log("Enemy turn started.");
 
-        // Temporary placeholder for enemy actions.
-        yield return new WaitForSeconds(1f);
-
-        Debug.Log("Ogre takes its turn!");
+        yield return enemyController.ExecuteTurn();
 
         StartPlayerTurn();
     }
@@ -55,8 +62,17 @@ public class TurnManager : MonoBehaviour
         TurnNumber++;
         CurrentState = TurnState.Player;
 
+        // Restore energy to 3.
         energyManager.Refill();
 
-        Debug.Log($"Player turn {TurnNumber} started.");
+        // Draw a fresh hand.
+        handManager.DrawCards(cardsPerTurn);
+
+        enemyController.PrepareIntent();
+
+        Debug.Log(
+            $"Player turn {TurnNumber} started. " +
+            $"Cards in hand: {handManager.CardCount}"
+        );
     }
 }

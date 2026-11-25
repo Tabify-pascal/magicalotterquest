@@ -1,37 +1,25 @@
 fileFormatVersion: 2
-guid: 5fec7b6f258fb2246b2a0c94b7973dfc
+guid: 6a790242005e34a42a6356d5375336c0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9093579337159959137
-    second: energy_digits_0_to_9_24x24-sheet_0
+      213: 959871393974885572
+    second: enemy_intents_32x32_0
   - first:
-      213: 5092645172019181022
-    second: energy_digits_0_to_9_24x24-sheet_1
+      213: -8484648039151819453
+    second: enemy_intents_32x32_1
   - first:
-      213: 7055112798538052052
-    second: energy_digits_0_to_9_24x24-sheet_2
+      213: 4868729637909868996
+    second: enemy_intents_32x32_2
   - first:
-      213: 3307403806246428519
-    second: energy_digits_0_to_9_24x24-sheet_3
+      213: 2918576690275143567
+    second: enemy_intents_32x32_3
   - first:
-      213: 4837826177703171348
-    second: energy_digits_0_to_9_24x24-sheet_4
+      213: -2143422387354774661
+    second: enemy_intents_32x32_4
   - first:
-      213: -5838699448852797772
-    second: energy_digits_0_to_9_24x24-sheet_5
-  - first:
-      213: 2795376012589864677
-    second: energy_digits_0_to_9_24x24-sheet_6
-  - first:
-      213: -6845965029696962663
-    second: energy_digits_0_to_9_24x24-sheet_7
-  - first:
-      213: -4931060511333805488
-    second: energy_digits_0_to_9_24x24-sheet_8
-  - first:
-      213: 7710516795460534462
-    second: energy_digits_0_to_9_24x24-sheet_9
+      213: 2342959643343363812
+    second: enemy_intents_32x32_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -142,13 +130,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: energy_digits_0_to_9_24x24-sheet_0
+      name: enemy_intents_32x32_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 24
-        height: 24
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 16260403a32e23e70800000000000000
-      internalID: 9093579337159959137
+      spriteID: 4cc9eeb72f5225d00800000000000000
+      internalID: 959871393974885572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: energy_digits_0_to_9_24x24-sheet_1
+      name: enemy_intents_32x32_1
       rect:
         serializedVersion: 2
-        x: 24
+        x: 32
         y: 0
-        width: 24
-        height: 24
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +167,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ed5bf4d4dc5bca640800000000000000
-      internalID: 5092645172019181022
+      spriteID: 345242edf89704a80800000000000000
+      internalID: -8484648039151819453
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: energy_digits_0_to_9_24x24-sheet_2
+      name: enemy_intents_32x32_2
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 0
-        width: 24
-        height: 24
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -201,42 +189,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4d13c2fe5bbc8e160800000000000000
-      internalID: 7055112798538052052
+      spriteID: 4c1b80f5fc3319340800000000000000
+      internalID: 4868729637909868996
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: energy_digits_0_to_9_24x24-sheet_3
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 0
-        width: 24
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 76fd7180d3246ed20800000000000000
-      internalID: 3307403806246428519
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: energy_digits_0_to_9_24x24-sheet_4
+      name: enemy_intents_32x32_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 24
-        height: 24
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -245,20 +211,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4155517d649632340800000000000000
-      internalID: 4837826177703171348
+      spriteID: f8fc599590ed08820800000000000000
+      internalID: 2918576690275143567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: energy_digits_0_to_9_24x24-sheet_5
+      name: enemy_intents_32x32_4
       rect:
         serializedVersion: 2
-        x: 120
+        x: 128
         y: 0
-        width: 24
-        height: 24
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -267,20 +233,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4b62cd839c5c8fea0800000000000000
-      internalID: -5838699448852797772
+      spriteID: b73591ee1b80142e0800000000000000
+      internalID: -2143422387354774661
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: energy_digits_0_to_9_24x24-sheet_6
+      name: enemy_intents_32x32_5
       rect:
         serializedVersion: 2
-        x: 144
+        x: 160
         y: 0
-        width: 24
-        height: 24
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -289,74 +255,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5e611144cab2bc620800000000000000
-      internalID: 2795376012589864677
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: energy_digits_0_to_9_24x24-sheet_7
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 0
-        width: 24
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 99f7a24b31f3ef0a0800000000000000
-      internalID: -6845965029696962663
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: energy_digits_0_to_9_24x24-sheet_8
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 24
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0521eff379a519bb0800000000000000
-      internalID: -4931060511333805488
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: energy_digits_0_to_9_24x24-sheet_9
-      rect:
-        serializedVersion: 2
-        x: 216
-        y: 0
-        width: 24
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eb0cb146c22410b60800000000000000
-      internalID: 7710516795460534462
+      spriteID: 4ee9e80d16dd38020800000000000000
+      internalID: 2342959643343363812
       vertices: []
       indices: 
       edges: []
@@ -365,7 +265,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a4cd688b33172c144b09f494bc9e3d56
+    spriteID: b47e1b96a2283844d9dca7677d2e1a2f
     internalID: 0
     vertices: []
     indices: 
@@ -375,18 +275,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":24.0,"y":24.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      energy_digits_0_to_9_24x24-sheet_0: 9093579337159959137
-      energy_digits_0_to_9_24x24-sheet_1: 5092645172019181022
-      energy_digits_0_to_9_24x24-sheet_2: 7055112798538052052
-      energy_digits_0_to_9_24x24-sheet_3: 3307403806246428519
-      energy_digits_0_to_9_24x24-sheet_4: 4837826177703171348
-      energy_digits_0_to_9_24x24-sheet_5: -5838699448852797772
-      energy_digits_0_to_9_24x24-sheet_6: 2795376012589864677
-      energy_digits_0_to_9_24x24-sheet_7: -6845965029696962663
-      energy_digits_0_to_9_24x24-sheet_8: -4931060511333805488
-      energy_digits_0_to_9_24x24-sheet_9: 7710516795460534462
+      enemy_intents_32x32_0: 959871393974885572
+      enemy_intents_32x32_1: -8484648039151819453
+      enemy_intents_32x32_2: 4868729637909868996
+      enemy_intents_32x32_3: 2918576690275143567
+      enemy_intents_32x32_4: -2143422387354774661
+      enemy_intents_32x32_5: 2342959643343363812
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

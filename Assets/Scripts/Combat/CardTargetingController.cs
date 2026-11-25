@@ -11,6 +11,7 @@ public class CardTargetingController : MonoBehaviour
     [SerializeField] private TargetingArrowUI targetingArrow;
     [SerializeField] private RectTransform gameCanvasRect;
     [SerializeField] private CombatAnimator playerAnimator;
+    [SerializeField] private HandManager handManager;
 
     private CardView selectedCard;
 
@@ -108,7 +109,14 @@ public class CardTargetingController : MonoBehaviour
             $"for {card.Damage} damage!"
         );
 
+        // Save the selected card before clearing the selection
+        CardView playedCard = selectedCard;
+
+        // Hide the targeting arrow and clear the selection.
         CancelSelection();
+
+        // Move the card to the discard pile.
+        handManager.PlayCard(playedCard);
     }
 
     public void CancelSelection()

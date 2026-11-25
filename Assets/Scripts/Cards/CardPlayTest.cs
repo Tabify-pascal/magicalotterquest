@@ -6,10 +6,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CardView))]
 public class CardPlayTest : MonoBehaviour
 {
-    [SerializeField] private CardTargetingController targetingController;
-
     private Button button;
     private CardView cardView;
+    private CardTargetingController targetingController;
 
     private void Awake()
     {
@@ -17,6 +16,11 @@ public class CardPlayTest : MonoBehaviour
         cardView = GetComponent<CardView>();
 
         button.onClick.AddListener(SelectCard);
+    }
+
+    public void Initialize(CardTargetingController controller)
+    {
+        targetingController = controller;
     }
 
     private void OnDestroy()
@@ -27,6 +31,12 @@ public class CardPlayTest : MonoBehaviour
 
     private void SelectCard()
     {
+        if (targetingController == null)
+        {
+            Debug.LogWarning("Card has no targeting controller!");
+            return;
+        }
+
         targetingController.SelectCard(cardView);
     }
 }

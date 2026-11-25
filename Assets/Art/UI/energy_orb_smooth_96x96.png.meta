@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: b75a278bcd126204abc40bb46cce3e97
+guid: 57c7a3f26d6540447afce44e8ab06dfa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6497291223985462423
-    second: magical_otter_energy_orb_48x48_0
-  - first:
-      213: -1575976155731534817
-    second: magical_otter_energy_orb_48x48_1
+      213: -1421764699099136351
+    second: energy_orb_smooth_96x96_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -118,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: magical_otter_energy_orb_48x48_0
+      name: energy_orb_smooth_96x96_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 1
-        width: 44
-        height: 47
+        x: 7
+        y: 3
+        width: 82
+        height: 91
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,30 +130,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 96365105e0cf4d5a0800000000000000
-      internalID: -6497291223985462423
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: magical_otter_energy_orb_48x48_1
-      rect:
-        serializedVersion: 2
-        x: 12
-        y: 0
-        width: 19
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f1cd2274902012ae0800000000000000
-      internalID: -1575976155731534817
+      spriteID: 1ae710cf980e44ce0800000000000000
+      internalID: -1421764699099136351
       vertices: []
       indices: 
       edges: []
@@ -175,8 +150,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      magical_otter_energy_orb_48x48_0: -6497291223985462423
-      magical_otter_energy_orb_48x48_1: -1575976155731534817
+      energy_orb_smooth_96x96_0: -1421764699099136351
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
