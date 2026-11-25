@@ -9,8 +9,15 @@ public class CardView : MonoBehaviour
     [SerializeField] private CardData startingCard;
     [SerializeField] private bool startUpgraded;
 
-    [Header("UI")]
-    [SerializeField] private Image cardImage;
+    [Header("Artwork")]
+    [SerializeField] private Image artworkImage;
+
+    [Header("Card Frames")]
+    [SerializeField] private Image frameImage;
+    [SerializeField] private Sprite normalFrame;
+    [SerializeField] private Sprite upgradedFrame;
+
+    [Header("Card Text")]
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text energyText;
     [SerializeField] private TMP_Text descriptionText;
@@ -34,7 +41,15 @@ public class CardView : MonoBehaviour
         if (Card == null)
             return;
 
-        cardImage.sprite = Card.Data.artwork;
+        // Artwork
+        artworkImage.sprite = Card.Data.artwork;
+
+        // Normal or upgraded frame
+        frameImage.sprite = Card.IsUpgraded
+            ? upgradedFrame
+            : normalFrame;
+
+        // Card text
         nameText.text = Card.Name;
         energyText.text = Card.EnergyCost.ToString();
         descriptionText.text = $"Deal {Card.Damage} damage.";

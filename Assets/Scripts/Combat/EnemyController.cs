@@ -23,39 +23,41 @@ public class EnemyController : MonoBehaviour
         combatAnimator = GetComponent<CombatAnimator>();
     }
 
+
     public IEnumerator ExecuteTurn()
     {
-        if (currentIntents.Count == 0)
-            yield break;
-
         intentUI.Clear();
 
-        if (combatant.CurrentHealth <= 0)
+        if (!combatant.IsAlive)
             yield break;
 
-        // Brief pause before attacking.
-        yield return new WaitForSeconds(0.4f);
+        // Clear remaining block at the start of the enemy turn.
+        combatant.ClearBlock();
 
-        combatAnimator.PlayAttack();
+        foreach (EnemyIntent intent in currentIntents)
+        {
+            if (!combatant.IsAlive || !player.IsAlive)
+                break;
 
-        // Wait for the attack animation to progress.
-        yield return new WaitForSeconds(0.4f);
+            switch (intent.Type)
+            {
+                case EnemyIntentType.Attack:
+                    yield return ExecuteAttack(intent.Value);
+                    break;
 
-        if (combatant.CurrentHealth <= 0 ||
-            player.CurrentHealth <= 0)
-            yield break;
+                case EnemyIntentType.Block:
+                    combatant.GainBlock(intent.Value);
 
-        player.TakeDamage(attackDamage);
+                    Debug.Log(
+                        $"{name} gains {intent.Value} Block."
+                    );
 
-        if (player.CurrentHealth > 0)
-            playerAnimator.PlayHurt();
-
-        Debug.Log(
-            $"{name} attacks for {attackDamage} damage!"
-        );
-
-        yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(0.4f);
+                    break;
+            }
+        }
     }
+
 
     public void PrepareIntent()
     {
@@ -71,4 +73,32 @@ public class EnemyController : MonoBehaviour
 
         intentUI.ShowIntents(currentIntents);
     }
+
+
+    private IEnumerator ExecuteAttack(int damage)
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        combatAnimator.PlayAttack();
+
+        yield return new WaitForSeconds(0.4f);
+
+        if (!combatant.IsAlive || !player.IsAlive)
+            yield break;
+
+        int previousHealth = player.CurrentHealth;
+
+        player.TakeDamage(damage);
+
+        if (player.IsAlive &&
+            player.CurrentHealth < previousHealth)
+        {
+            playerAnimator.PlayHurt();
+        }
+
+        Debug.Log($"{name} attacks for {damage} damage!");
+
+        yield return new WaitForSeconds(0.5f);
+    }
+
 }

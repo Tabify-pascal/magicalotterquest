@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
+
 public enum TurnState
 {
     Player,
@@ -15,6 +16,7 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private CardTargetingController targetingController;
     [SerializeField] private HandManager handManager;
     [SerializeField] private EnemyController enemyController;
+    [SerializeField] private Combatant player;
 
     [Header("Turn Settings")]
     [SerializeField, Min(1)] private int cardsPerTurn = 5;
@@ -62,10 +64,9 @@ public class TurnManager : MonoBehaviour
         TurnNumber++;
         CurrentState = TurnState.Player;
 
-        // Restore energy to 3.
-        energyManager.Refill();
+        player.ClearBlock();
 
-        // Draw a fresh hand.
+        energyManager.Refill();
         handManager.DrawCards(cardsPerTurn);
 
         enemyController.PrepareIntent();
