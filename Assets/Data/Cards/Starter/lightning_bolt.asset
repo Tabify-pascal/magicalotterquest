@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: lightning_bolt
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   cardName: Lightning Bolt
-  artwork: {fileID: 21300000, guid: 27fd5b8ddaec9a74b8d8b1d31acb9060, type: 3}
+  artwork: {fileID: 21300000, guid: cfab6f0f1bfeb41419d51cf29add2a6f, type: 3}
   energyCost: 1
   damage: 1
   upgradedDamage: 2
