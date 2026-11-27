@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c5e8a42f3c287a340b9fda03fd9b4b05
+guid: daea9b5563afa5942807951c4b314494
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6712527181768830005
-    second: card_frames_red_blue_128x176_0
+      213: 6947446564720955309
+    second: card_frames_v4_256x176-sheet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: card_frames_red_blue_128x176_0
+      name: card_frames_v4_256x176-sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 53c2c7648efa72d50800000000000000
-      internalID: 6712527181768830005
+      spriteID: daf433a67d94a6060800000000000000
+      internalID: 6947446564720955309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: card_frames_red_blue_128x176_1
+      name: card_frames_v4_256x176-sheet_1
       rect:
         serializedVersion: 2
         x: 128
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a443deaa50c42634f9f197a92a06e252
-      internalID: -1998066794
+      spriteID: b907dfa3f4a00344d8a5ff1adf337839
+      internalID: 103007172
       vertices: []
       indices: 
       edges: []
@@ -162,7 +162,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5272505467114134ab92bdea73ba0cac
+    spriteID: daa5b3e5c59b457408b9a24454c5e1dc
     internalID: 0
     vertices: []
     indices: 
@@ -174,8 +174,8 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":176.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      card_frames_red_blue_128x176_0: 6712527181768830005
-      card_frames_red_blue_128x176_1: -1998066794
+      card_frames_v4_256x176-sheet_0: 6947446564720955309
+      card_frames_v4_256x176-sheet_1: 103007172
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
