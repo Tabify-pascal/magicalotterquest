@@ -657,6 +657,11 @@ MonoBehaviour:
   handManager: {fileID: 1002073289}
   enemyController: {fileID: 824984096}
   player: {fileID: 1258497322}
+  enemy: {fileID: 824984093}
+  playerAnimator: {fileID: 1258497323}
+  enemyAnimator: {fileID: 824984095}
+  endTurnButton: {fileID: 1885831634}
+  enemyIntentUI: {fileID: 666307573}
   cardsPerTurn: 5
 --- !u!1 &448775087
 GameObject:

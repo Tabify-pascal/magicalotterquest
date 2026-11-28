@@ -1,12 +1,13 @@
-
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public enum TurnState
 {
     Player,
-    Enemy
+    Enemy,
+    Victory,
+    Defeat
 }
 
 public class TurnManager : MonoBehaviour
@@ -17,6 +18,15 @@ public class TurnManager : MonoBehaviour
     [SerializeField] private HandManager handManager;
     [SerializeField] private EnemyController enemyController;
     [SerializeField] private Combatant player;
+    [SerializeField] private Combatant enemy;
+
+    [Header("Animations")]
+    [SerializeField] private CombatAnimator playerAnimator;
+    [SerializeField] private CombatAnimator enemyAnimator;
+
+    [Header("UI")]
+    [SerializeField] private Button endTurnButton;
+    [SerializeField] private EnemyIntentContainer enemyIntentUI;
 
     [Header("Turn Settings")]
     [SerializeField, Min(1)] private int cardsPerTurn = 5;
@@ -26,6 +36,22 @@ public class TurnManager : MonoBehaviour
 
     public bool IsPlayerTurn =>
         CurrentState == TurnState.Player;
+
+    public bool IsCombatOver =>
+        CurrentState == TurnState.Victory ||
+        CurrentState == TurnState.Defeat;
+
+    private void OnEnable()
+    {
+        player.OnDeath += HandlePlayerDeath;
+        enemy.OnDeath += HandleEnemyDeath;
+    }
+
+    private void OnDisable()
+    {
+        player.OnDeath -= HandlePlayerDeath;
+        enemy.OnDeath -= HandleEnemyDeath;
+    }
 
     private void Start()
     {
@@ -39,10 +65,9 @@ public class TurnManager : MonoBehaviour
 
         CurrentState = TurnState.Enemy;
 
-        // Cancel any selected card before destroying it.
-        targetingController.CancelSelection();
+        endTurnButton.interactable = false;
 
-        // Discard all remaining cards.
+        targetingController.CancelSelection();
         handManager.DiscardHand();
 
         Debug.Log($"Player turn {TurnNumber} ended.");
@@ -56,11 +81,17 @@ public class TurnManager : MonoBehaviour
 
         yield return enemyController.ExecuteTurn();
 
+        if (IsCombatOver)
+            yield break;
+
         StartPlayerTurn();
     }
 
     private void StartPlayerTurn()
     {
+        if (IsCombatOver)
+            return;
+
         TurnNumber++;
         CurrentState = TurnState.Player;
 
@@ -71,9 +102,51 @@ public class TurnManager : MonoBehaviour
 
         enemyController.PrepareIntent();
 
+        endTurnButton.interactable = true;
+
         Debug.Log(
             $"Player turn {TurnNumber} started. " +
             $"Cards in hand: {handManager.CardCount}"
         );
+    }
+
+    private void HandleEnemyDeath()
+    {
+        if (IsCombatOver)
+            return;
+
+        CurrentState = TurnState.Victory;
+
+        FinishCombat();
+
+        enemyAnimator.PlayDefeat();
+        playerAnimator.PlayVictory();
+
+        Debug.Log("VICTORY!");
+    }
+
+    private void HandlePlayerDeath()
+    {
+        if (IsCombatOver)
+            return;
+
+        CurrentState = TurnState.Defeat;
+
+        FinishCombat();
+
+        playerAnimator.PlayDefeat();
+
+        Debug.Log("DEFEAT!");
+    }
+
+    private void FinishCombat()
+    {
+        StopAllCoroutines();
+
+        targetingController.CancelSelection();
+
+        enemyIntentUI.Clear();
+
+        endTurnButton.interactable = false;
     }
 }

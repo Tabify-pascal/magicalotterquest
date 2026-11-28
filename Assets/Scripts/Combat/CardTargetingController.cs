@@ -91,7 +91,8 @@ public class CardTargetingController : MonoBehaviour
         if (target == null || !target.IsAlive)
             return;
 
-        CardInstance card = selectedCard.Card;
+        CardView playedCard = selectedCard;
+        CardInstance card = playedCard.Card;
 
         if (!energyManager.TrySpend(card.EnergyCost))
         {
@@ -142,7 +143,6 @@ public class CardTargetingController : MonoBehaviour
             $"{card.Block} block."
         );
 
-        CardView playedCard = selectedCard;
 
         CancelSelection();
 
