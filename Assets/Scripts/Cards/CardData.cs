@@ -9,13 +9,21 @@ public class CardData : ScriptableObject
     [Header("Identity")]
     public string cardName;
     public Sprite artwork;
+    public CardType cardType = CardType.Attack;
+    public CardTargetType targetType = CardTargetType.Enemy;
 
-    [Header("Gameplay")]
+    [Header("Energy")]
     [Min(0)] public int energyCost = 1;
-    [Min(0)] public int damage = 1;
-    [Min(0)] public int upgradedDamage = 2;
+
+    [Header("Damage")]
+    [Min(0)] public int damage;
+    [Min(0)] public int upgradedDamage;
+
+    [Header("Block")]
+    [Min(0)] public int block;
+    [Min(0)] public int upgradedBlock;
 
     [Header("Description")]
     [TextArea]
-    public string description = "Deal 1 damage.";
+    public string description;
 }

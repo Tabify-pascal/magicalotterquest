@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c7ad4a8408a4d4f8949d7852bd9761, type: 3}
+  m_Name: block
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  cardName: Block
+  artwork: {fileID: 544457950835671316, guid: 7a1e3523deda37443a35e9a0612f75e6, type: 3}
+  cardType: 1
+  targetType: 1
+  energyCost: 1
+  damage: 0
+  upgradedDamage: 0
+  block: 1
+  upgradedBlock: 2
+  description: Gain {block} Block.

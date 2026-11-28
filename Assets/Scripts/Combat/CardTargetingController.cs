@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,13 +10,14 @@ public class CardTargetingController : MonoBehaviour
     [SerializeField] private TargetingArrowUI targetingArrow;
     [SerializeField] private RectTransform gameCanvasRect;
     [SerializeField] private CombatAnimator playerAnimator;
+    [SerializeField] private Combatant player;
     [SerializeField] private HandManager handManager;
 
     private CardView selectedCard;
 
     public void SelectCard(CardView card)
     {
-        if (!turnManager.IsPlayerTurn)
+        if (!turnManager.IsPlayerTurn || !player.IsAlive)
             return;
 
         if (card == null || card.Card == null)
@@ -37,6 +37,13 @@ public class CardTargetingController : MonoBehaviour
         }
 
         selectedCard = card;
+
+        // Self-targeting cards are played immediately.
+        if (card.Card.TargetType == CardTargetType.Self)
+        {
+            PlayCard(player);
+            return;
+        }
 
         Debug.Log($"Selected {card.Card.Name}");
     }
@@ -67,19 +74,21 @@ public class CardTargetingController : MonoBehaviour
 
         Combatant target = hit.GetComponentInParent<Combatant>();
 
-        if (target == null)
+        if (target == null || !target.IsAlive)
             return;
 
         PlayCard(target);
     }
 
-
     private void PlayCard(Combatant target)
     {
-        if (!turnManager.IsPlayerTurn)
+        if (!turnManager.IsPlayerTurn || !player.IsAlive)
             return;
 
         if (selectedCard == null || selectedCard.Card == null)
+            return;
+
+        if (target == null || !target.IsAlive)
             return;
 
         CardInstance card = selectedCard.Card;
@@ -91,31 +100,52 @@ public class CardTargetingController : MonoBehaviour
             return;
         }
 
-        // Player casts the spell.
-        playerAnimator.PlaySpell();
-
-        // Apply damage.
-        target.TakeDamage(card.Damage);
-
-        // Enemy reacts to damage.
-        if (target.CurrentHealth > 0 &&
-            target.TryGetComponent(out CombatAnimator targetAnimator))
+        // Play the appropriate player animation.
+        if (card.Damage > 0)
         {
-            targetAnimator.PlayHurt();
+            playerAnimator.PlaySpell();
+        }
+        else if (card.Block > 0)
+        {
+            playerAnimator.PlayBuff();
+        }
+        else
+        {
+            playerAnimator.PlaySpell();
+        }
+
+        // Apply damage to the target.
+        if (card.Damage > 0)
+        {
+            int previousHealth = target.CurrentHealth;
+
+            target.TakeDamage(card.Damage);
+
+            if (target.IsAlive &&
+                target.CurrentHealth < previousHealth &&
+                target.TryGetComponent(
+                    out CombatAnimator targetAnimator))
+            {
+                targetAnimator.PlayHurt();
+            }
+        }
+
+        // Apply block to the player.
+        if (card.Block > 0)
+        {
+            player.GainBlock(card.Block);
         }
 
         Debug.Log(
-            $"Played {card.Name} on {target.name} " +
-            $"for {card.Damage} damage!"
+            $"Played {card.Name}: " +
+            $"{card.Damage} damage, " +
+            $"{card.Block} block."
         );
 
-        // Save the selected card before clearing the selection
         CardView playedCard = selectedCard;
 
-        // Hide the targeting arrow and clear the selection.
         CancelSelection();
 
-        // Move the card to the discard pile.
         handManager.PlayCard(playedCard);
     }
 

@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
 
     private Combatant combatant;
     private CombatAnimator combatAnimator;
+    private int intentIndex = 0;
 
     private void Awake()
     {
@@ -63,13 +64,26 @@ public class EnemyController : MonoBehaviour
     {
         currentIntents.Clear();
 
-        currentIntents.Add(
-            new EnemyIntent(EnemyIntentType.Attack, attackDamage)
-        );
+        if (intentIndex % 2 == 0)
+        {
+            currentIntents.Add(
+                new EnemyIntent(
+                    EnemyIntentType.Attack,
+                    attackDamage
+                )
+            );
+        }
+        else
+        {
+            currentIntents.Add(
+                new EnemyIntent(
+                    EnemyIntentType.Block,
+                    3
+                )
+            );
+        }
 
-        currentIntents.Add(
-            new EnemyIntent(EnemyIntentType.Block, 3)
-        );
+        intentIndex++;
 
         intentUI.ShowIntents(currentIntents);
     }

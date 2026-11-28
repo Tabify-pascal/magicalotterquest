@@ -26,12 +26,14 @@ public class BlockUI : MonoBehaviour
     }
 
     private void Refresh(int block)
-    {
-        bool hasBlock = block > 0;
+{
+    Debug.Log($"BlockUI: {combatant.name} has {block} Block.");
 
-        shieldIcon.enabled = hasBlock;
-        blockText.enabled = hasBlock;
+    bool hasBlock = block > 0;
 
-        blockText.text = block.ToString();
-    }
+    shieldIcon.enabled = hasBlock;
+    blockText.enabled = hasBlock;
+
+    blockText.text = block.ToString();
+}
 }

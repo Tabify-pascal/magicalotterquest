@@ -1,11 +1,11 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DeckManager : MonoBehaviour
 {
-    [SerializeField] private CardData startingCard;
-    [SerializeField, Min(1)] private int startingDeckSize = 10;
+    [Header("Starting Deck")]
+    [SerializeField]
+    private List<StartingDeckEntry> startingDeck = new();
 
     private readonly List<CardInstance> drawPile = new();
     private readonly List<CardInstance> discardPile = new();
@@ -15,12 +15,35 @@ public class DeckManager : MonoBehaviour
 
     private void Awake()
     {
-        for (int i = 0; i < startingDeckSize; i++)
+        InitializeDeck();
+    }
+
+    private void InitializeDeck()
+    {
+        drawPile.Clear();
+        discardPile.Clear();
+
+        foreach (StartingDeckEntry entry in startingDeck)
         {
-            drawPile.Add(new CardInstance(startingCard));
+            if (entry == null || entry.card == null)
+                continue;
+
+            for (int i = 0; i < entry.amount; i++)
+            {
+                drawPile.Add(
+                    new CardInstance(
+                        entry.card,
+                        entry.isUpgraded
+                    )
+                );
+            }
         }
 
         Shuffle(drawPile);
+
+        Debug.Log(
+            $"Deck initialized with {drawPile.Count} cards."
+        );
     }
 
     public CardInstance DrawCard()

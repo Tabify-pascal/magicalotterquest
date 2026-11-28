@@ -52,6 +52,8 @@ public class CardView : MonoBehaviour
         // Card text
         nameText.text = Card.Name;
         energyText.text = Card.EnergyCost.ToString();
-        descriptionText.text = $"Deal {Card.Damage} damage.";
+        descriptionText.text = Card.Data.description
+    .Replace("{damage}", Card.Damage.ToString())
+    .Replace("{block}", Card.Block.ToString());
     }
 }
